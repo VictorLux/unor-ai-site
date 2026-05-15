@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UnOr.ai — Unified Orchestrator</title>
+<meta name="description" content="UnOr.ai — Unified Orchestrator. An audited AI workforce, conducted by one human. Coming soon." />
+<meta property="og:title" content="UnOr.ai — Unified Orchestrator" />
+<meta property="og:description" content="An audited AI workforce, conducted by one human. Coming soon." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#F7931A" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07090f;
+    --bg-grad-1: #0a0e1a;
+    --bg-grad-2: #050709;
+    --orange: #F7931A;
+    --orange-soft: rgba(247,147,26,0.18);
+    --orange-glow: rgba(247,147,26,0.42);
+    --white: #f5f7fa;
+    --muted: #6b7280;
+    --dim: #4b5563;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Background: dark gradient + subtle pixel grid + soft orange aurora ── */
+  body {
+    background:
+      radial-gradient(ellipse 900px 500px at 50% 35%, rgba(247,147,26,0.10), transparent 70%),
+      radial-gradient(ellipse 1100px 600px at 50% 100%, rgba(247,147,26,0.05), transparent 60%),
+      linear-gradient(180deg, var(--bg-grad-1), var(--bg-grad-2));
+    position: relative;
+  }
+  /* Faint pixel grid overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.020) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.020) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 800px 600px at 50% 45%, black, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 800px 600px at 50% 45%, black, transparent 75%);
+  }
+  /* Scanline overlay (very subtle, gives the CRT feel) */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.018) 0,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── Centered stage ── */
+  main {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+
+  /* ── Wordmark ── */
+  .wordmark {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: clamp(38px, 8.4vw, 116px);
+    line-height: 1;
+    color: var(--orange);
+    letter-spacing: 0.01em;
+    text-shadow:
+      0 0 12px var(--orange-glow),
+      0 0 36px rgba(247,147,26,0.25),
+      0 0 2px rgba(247,147,26,0.9);
+    animation: pulseGlow 3.4s ease-in-out infinite;
+    -webkit-font-smoothing: none;
+  }
+  .wordmark .dot {
+    color: var(--white);
+    text-shadow: 0 0 8px rgba(255,255,255,0.45);
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      text-shadow:
+        0 0 12px var(--orange-glow),
+        0 0 36px rgba(247,147,26,0.25),
+        0 0 2px rgba(247,147,26,0.9);
+      transform: translateY(0);
+    }
+    50% {
+      text-shadow:
+        0 0 22px rgba(247,147,26,0.65),
+        0 0 60px rgba(247,147,26,0.40),
+        0 0 4px rgba(247,147,26,1);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* ── Tagline (typewriter) ── */
+  .tagline {
+    margin-top: clamp(28px, 5vw, 56px);
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: clamp(15px, 2.4vw, 26px);
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    min-height: 1.6em;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .tagline .lead { color: var(--muted); margin-right: 8px; font-size: 0.78em; letter-spacing: 0.16em; text-transform: uppercase; }
+  .tagline .typed {
+    display: inline-block;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0;
+    width: 0;
+    padding-right: 0.4ch;
+    animation:
+      typeIn 2.8s steps(21, end) 0.6s forwards,
+      typeHold 4.0s linear 3.4s forwards;
+  }
+  .tagline .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.05em;
+    background: var(--orange);
+    margin-left: 4px;
+    transform: translateY(2px);
+    animation: blink 0.95s steps(1) infinite;
+    box-shadow: 0 0 6px var(--orange-glow);
+  }
+  @keyframes typeIn {
+    from { width: 0; }
+    to { width: 21.4ch; }
+  }
+  @keyframes typeHold {
+    from { width: 21.4ch; }
+    to { width: 21.4ch; }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* ── Coming soon ── */
+  .cs {
+    margin-top: clamp(22px, 4vw, 40px);
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(11px, 1.4vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 1.2s ease-out 3.6s forwards;
+  }
+  .cs::before, .cs::after {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--dim);
+    vertical-align: middle;
+    margin: 0 14px;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark { animation: none; }
+    .tagline .typed { width: 20ch; animation: none; }
+    .cursor { animation: none; opacity: 0.7; }
+    .cs { opacity: 1; animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="wordmark" aria-label="UnOr.ai">UnOr<span class="dot">.ai</span></div>
+
+  <div class="tagline" aria-label="Unified Orchestrator">
+    <span class="lead">a.k.a.</span><span class="typed">Unified Orchestrator</span><span class="cursor" aria-hidden="true"></span>
+  </div>
+
+  <div class="cs">Coming Soon</div>
+</main>
+
+</body>
+</html>
