@@ -197,12 +197,37 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  .peek {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 16px;
+    border: 1px solid rgba(247,147,26,0.34);
+    border-radius: 8px;
+    background: rgba(247,147,26,0.08);
+    color: var(--orange);
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 1.2s ease-out 4.0s forwards;
+  }
+  .peek:hover {
+    border-color: rgba(247,147,26,0.64);
+    background: rgba(247,147,26,0.14);
+    box-shadow: 0 0 24px rgba(247,147,26,0.14);
+  }
+
   /* ── Reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
     .wordmark { animation: none; }
     .tagline .typed { width: 20ch; animation: none; }
     .cursor { animation: none; opacity: 0.7; }
     .cs { opacity: 1; animation: none; }
+    .peek { opacity: 1; animation: none; }
   }
 </style>
 </head>
@@ -216,6 +241,7 @@
   </div>
 
   <div class="cs">Coming Soon</div>
+  <a class="peek" href="/sneak-peek/">Sneak peek</a>
 </main>
 
 </body>
